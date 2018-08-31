@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css"/>
+</head>
+<body class="m-1 p-1">
+    <div show-for-action="Index" class="m-1 p-1 bg-danger">
+        <h2>Important Message</h2>
+    </div>
+    <div title="Cities">@RenderBody()</div>
+</body>
+</html>
