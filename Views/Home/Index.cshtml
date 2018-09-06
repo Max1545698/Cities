@@ -15,12 +15,12 @@
         @foreach (City c in Model)
         {
             <tr>
-                <td wrap>@c.Name</td>
+                <td>@c.Name</td>
                 <td>@c.Country</td>
                 <td class="text-right">@c.Population?.ToString("#,###")</td>
             </tr>
         }
     </tbody>
 </table>
-<a href="Home/Create" class="btn btn-primary">Create</a>
+<a asp-action="Create" class="btn btn-primary">Create</a>
 

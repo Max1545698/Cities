@@ -3,13 +3,44 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css"/>
+    <title>Cities</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          asp-fallback-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-fallback-href-exclude="**/*-reboot*,**/*-grid*"
+          asp-fallback-test-class="btn"
+          asp-fallback-test-property="display"
+          asp-fallback-test-value="inline-block"
+          rel="stylesheet" />*@
+    @*<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
+            asp-fallback-src-include="/lib/jquery/dist/**/*.min.js"
+            asp-fallback-src-exclude="**.slim.**"
+            asp-fallback-test="window.jQuery">
+    </script>*@
+    @*<environment names="development">
+            <script asp-src-include="/lib/jquery/dist/**/j*.js"
+                    asp-src-exclude="**.slim.**,**.min.**"
+                    asp-append-version="true"></script>
+        </environment>
+        <environment names="production">
+            <script asp-src-include="/lib/jquery/dist/**/*.min.js",
+                    asp-src-exclude="**.slim.**"
+                    asp-append-version="true"></script>
+        </environment>*@
 </head>
 <body class="m-1 p-1">
-    <div show-for-action="Index" class="m-1 p-1 bg-danger">
-        <h2>Important Message</h2>
-    </div>
-    <div title="Cities">@RenderBody()</div>
+    @*<environment names="development">
+        <div class="panel-body bg-info"><h2>This is Development</h2></div>
+    </environment>
+    <environment names="production">
+        <div class="panel-body bg-info"><h2>This is Production</h2></div>
+    </environment>*@
+    @*<img src="~/images/city.png" asp-append-version="true" style="width:100%; height:150px"/>*@
+    
+    <cache expires-sliding="TimeSpan.FromSeconds(10)"
+           vary-by="@ViewContext.RouteData.Values["action"]">
+        @await Component.InvokeAsync("Time")
+    </cache>
+    <div>@RenderBody()</div>
 </body>
 </html>

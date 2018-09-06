@@ -27,19 +27,27 @@ namespace Cites
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.Map("/mvcapp", appBuilder =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseBrowserLink();
-            app.UseStaticFiles();
-            app.UseStatusCodePages();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                appBuilder.UseStatusCodePages();
+                appBuilder.UseDeveloperExceptionPage();
+                appBuilder.UseStaticFiles();
+                appBuilder.UseMvcWithDefaultRoute();
             });
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //app.UseBrowserLink();
+            //app.UseStaticFiles();
+            //app.UseStatusCodePages();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }
